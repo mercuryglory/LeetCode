@@ -8,7 +8,7 @@ package array;
  * 扩展：
  * 你能使用原地算法解决这个问题么？
  */
-public class RotateImage {
+public class LC48 {
 
     /**
      * 最外圈到最里圈，一层一层的转

@@ -12,7 +12,7 @@ package btree;
  *
  *  return 6
  */
-public class MaxPathSum {
+public class LC124 {
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
