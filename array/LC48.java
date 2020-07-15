@@ -1,5 +1,8 @@
 package array;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * created by mercury on 2020-06-14
  *
@@ -11,26 +14,35 @@ package array;
 public class LC48 {
 
     /**
-     * 最外圈到最里圈，一层一层的转
-     * 关键点 a[i][j]这个点的下一个位置是 a[n-1-j][i]
+     * 图解 https://uploadfiles.nowcoder.com/images/20160901/536462_1472719350724_E927FB24B1D99A05356A331B88A30942
+     * 分步骤求解，会简单一些
+     * 做两次翻转，先沿左下-右上的对角线翻转，再沿水平中线上下翻转
      */
     public static void rotate(int[][] matrix) {
         int n = matrix.length;
-        for (int i = 0; i < n / 2; i++) {
-            for (int j = i; j < n - i - 1; j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - i; j++) {
                 int temp = matrix[i][j];
-                matrix[i][j] = matrix[n - 1 - j][i];
-                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];
-                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];
-                matrix[j][n - 1 - i] = temp;
+                matrix[i][j] = matrix[n - j - 1][n - i - 1];
+                matrix[n - j - 1][n - i - 1] = temp;
+            }
+        }
+
+        for (int i = 0; i < n / 2; i++) {
+            for (int j = 0; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[n - i - 1][j];
+                matrix[n - i - 1][j] = temp;
             }
         }
     }
 
 
+
     public static void main(String[] args) {
         int[][] arr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         rotate(arr);
+        System.out.println(123);
     }
 
 }
