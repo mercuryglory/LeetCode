@@ -1,12 +1,12 @@
 package array;
 
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * created by mercury on 2020-06-14
  *
- * 给出一个用二维矩阵表示的图像
+ * 旋转图像
+ *
+ * 给出一个用n * n二维矩阵表示的图像
  * 返回该图像顺时针旋转90度的结果
  * 扩展：
  * 你能使用原地算法解决这个问题么？
