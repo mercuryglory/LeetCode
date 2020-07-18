@@ -3,7 +3,7 @@ package dp;
 /**
  * created by mercury on 2020-07-18
  *
- * 最大子序和
+ * 爬楼梯
  */
-public class LC53 {
+public class LC70 {
 }
