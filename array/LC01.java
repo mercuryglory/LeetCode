@@ -1,6 +1,7 @@
 package array;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * created by mercury on 2020-07-17
@@ -25,7 +26,7 @@ public class LC01 {
 
     public static void main(String[] args) {
         int[] arr = {2, 4, 7, 5, 3, 1, 6, 9, 8};
-        int[] result = twoSum1(arr, 10);
+        int[] result = twoSum(arr, 10);
         System.out.println(Arrays.toString(result));
     }
 
@@ -33,6 +34,25 @@ public class LC01 {
     /**
      * 一遍哈希表，逆向思路，用元素的值做key，用对应的数组索引做value
      */
+    public static int[] twoSum(int[] nums, int target) {
+        int[] result = new int[]{-1, -1};
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int comp = target - nums[i];
+            if (map.containsKey(comp)) {
+                result[0] = map.get(comp);
+                result[1] = i;
+                return result;
+            }
+            map.put(nums[i], i);
+        }
+
+        return result;
+    }
+
+
+
+
     public static int[] twoSum1(int[] nums, int target) {
         int[] result = new int[]{-1, -1};
         for (int i = 0; i < nums.length - 1; i++) {
