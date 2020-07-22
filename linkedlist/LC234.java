@@ -27,7 +27,7 @@ public class LC234 extends BaseNode {
     /**
      * 用一个数组动态的存储链表每个节点的值，然后左右加逼去比较
      */
-    public static boolean isPalindrome(ListNode head) {
+    public static boolean isPalindrome2(ListNode head) {
         if (head == null) {
             return true;
         }
@@ -49,6 +49,56 @@ public class LC234 extends BaseNode {
         }
 
         return true;
+    }
+
+
+    /**
+     * 进阶做法，空间复杂度O(1)
+     * 1、找到前半部分链表的尾节点，快指针每次2步，慢指针每次1步
+     * 2、反转后半部分链表
+     * 3、遍历判断是否为回文，保存判断结果
+     * 4、恢复之前反转的部分
+     */
+    public static boolean isPalindrome(ListNode head) {
+
+        if (head == null) {
+            return true;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        ListNode secondHalf = reverse(slow.next);
+        ListNode p1 = head;
+        ListNode p2 = secondHalf;
+        boolean result = true;
+        while (result && p2 != null) {
+            if (p1.value != p2.value) {
+                result = false;
+            }
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        slow.next = reverse(secondHalf);
+
+        return result;
+
+    }
+
+    public static ListNode reverse(ListNode head) {
+        ListNode pre = null;
+        ListNode next = null;
+        while (head != null) {
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+
+        return pre;
     }
 
     public static void main(String[] args) {
