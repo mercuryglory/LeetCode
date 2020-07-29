@@ -119,7 +119,6 @@ public class LC05 {
             i--;
             j++;
         }
-        System.out.println(j - i - 1);
         return j - i - 1;
     }
 
@@ -162,7 +161,7 @@ public class LC05 {
     }
 
     public static void main(String[] args) {
-        String s = "ccc";
+        String s = "abbc";
         System.out.println(longestPalindrome2(s));
 
     }
