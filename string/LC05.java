@@ -81,6 +81,50 @@ public class LC05 {
 
     }
 
+
+    /**
+     * 中心扩散法，时间复杂度O(N2),空间复杂度O(1)
+     *
+     * 遍历每一个索引，以该索引为中心，利用回文串中心对称的特点，往两边扩散，看最多能扩散多远
+     * 注意回文串长度为奇数或偶数，回文中心的形式不一样：
+     * 1、奇数回文串的中心是一个具体字符，比如"aba"的中心是"b"
+     * 2、偶数回文串的中心是位于两个字符之间的空字符串，比如"abba"的中心是""
+     *
+     */
+    public static String longestPalindrome2(String s) {
+        int len = s.length();
+        if (len < 2) {
+            return s;
+        }
+
+        int begin = 0;
+        int maxLen = 1;
+        for (int i = 0; i < len; i++) {
+            int len1 = expandAroundCenter(s, i, i);
+            int len2 = expandAroundCenter(s, i, i + 1);
+            int len3 = Math.max(len1, len2);
+            if (len3 > maxLen) {
+                begin = i - (len3 - 1) / 2;
+                maxLen = len3;
+            }
+        }
+        return s.substring(begin, begin + maxLen);
+    }
+
+
+    private static int expandAroundCenter(String s, int left, int right) {
+        int i = left;
+        int j = right;
+        while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
+            i--;
+            j++;
+        }
+        System.out.println(j - i - 1);
+        return j - i - 1;
+    }
+
+
+
     //暴力穷举，时间复杂度O（N3)
     public static String longestPalindrome1(String s) {
         int len = s.length();
@@ -119,7 +163,7 @@ public class LC05 {
 
     public static void main(String[] args) {
         String s = "ccc";
-        System.out.println(longestPalindrome(s));
+        System.out.println(longestPalindrome2(s));
 
     }
 }
