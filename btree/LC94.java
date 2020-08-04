@@ -85,6 +85,7 @@ public class LC94 extends BaseTreeNode {
         Integer[] arr = {1, 2, 3, 4, 5, 6, null};
         TreeNode root = generateTreeNode(arr);
         System.out.println(inorderTraversal2(root));
+        System.out.println(123);
 
     }
 }

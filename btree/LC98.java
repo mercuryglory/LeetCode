@@ -66,24 +66,22 @@ public class LC98 extends BaseTreeNode {
 
     /**
      * 拓展，迭代的做法最好也能掌握，利用栈，但同样需要一个变量记录每次遍历的节点值
-     * 用一个node引用指向最初的root比较好，不改变输入参数
      */
     public static boolean isValidBST2(TreeNode root) {
         long pre = Long.MIN_VALUE;
 
         Stack<TreeNode> stack = new Stack<>();
-        TreeNode node = root;
-        while (!stack.isEmpty() || node != null) {
-            if (node != null) {
-                stack.push(node);
-                node = node.left;
+        while (!stack.isEmpty() || root != null) {
+            if (root != null) {
+                stack.push(root);
+                root = root.left;
             } else {
-                node = stack.pop();
-                if (node.val <= pre) {
+                root = stack.pop();
+                if (root.val <= pre) {
                     return false;
                 }
-                pre = node.val;
-                node = node.right;
+                pre = root.val;
+                root = root.right;
             }
         }
 
@@ -96,5 +94,6 @@ public class LC98 extends BaseTreeNode {
         Integer[] arr = {10, 5, 15, null,null, 12, 20};
         TreeNode root = generateTreeNode(arr);
         System.out.println(isValidBST2(root));
+        System.out.println(123);
     }
 }
