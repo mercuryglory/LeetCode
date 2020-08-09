@@ -2,6 +2,7 @@ package backtrace;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,40 +39,31 @@ public class LC46 {
             return res;
         }
 
-        backTrack(res, new ArrayList<>(), nums, 0);
+        List<Integer> list = new ArrayList<>();
+        //优化一下，在开始递归前遍历数组到集合，在循环递归中只对集合做交换操作
+        for (int num : nums) {
+            list.add(num);
+        }
+        backTrack(res, list, list.size(), 0);
         return res;
 
     }
 
-    private static void backTrack(List<List<Integer>> res, List<Integer> list, int[] nums, int start) {
-        if (nums == null || start > nums.length - 1) {
+    private static void backTrack(List<List<Integer>> res, List<Integer> list, int len, int start) {
+        if (start > len - 1) {
             return;
         }
-        if (start == nums.length - 1) {
-            for (int num : nums) {
-                list.add(num);
-            }
+        if (start == len - 1) {
             //回溯的问题，一定要记得需要对引用进行拷贝，否则引用回溯后最后得到的都是空
             res.add(new ArrayList<>(list));
-            list.clear();
         } else {
-            for (int i = start; i <= nums.length - 1; i++) {
-                swap(nums, i, start);
-                backTrack(res, list, nums, start + 1);
-                swap(nums, i, start);
+            for (int i = start; i <= len - 1; i++) {
+                Collections.swap(list, i, start);
+                backTrack(res, list, len, start + 1);
+                Collections.swap(list, i, start);
             }
         }
 
-    }
-
-
-    private static void swap(int[] arr, int a, int b) {
-        if (a == b) {
-            return;
-        }
-        int temp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = temp;
     }
 
 
