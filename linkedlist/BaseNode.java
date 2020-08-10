@@ -25,4 +25,24 @@ public class BaseNode {
 
         return head;
     }
+
+    protected static ListNode generateCircle(int[] arr, int pos) {
+        ListNode pre = new ListNode(-1);
+        ListNode target = null;
+        ListNode head = pre;
+        for (int i = 0; i < arr.length; i++) {
+            head.next = new ListNode(arr[i]);
+            head = head.next;
+            if (pos >= 0 && pos < arr.length - 1 && pos == i) {
+                target = head;
+            }
+            if (i == arr.length - 1) {
+                head.next = target;
+            }
+        }
+
+        return pre.next;
+
+
+    }
 }
