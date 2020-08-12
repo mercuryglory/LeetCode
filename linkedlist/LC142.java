@@ -21,6 +21,7 @@ public class LC142 extends BaseNode {
      * 关于证明可以看题解下的高赞回答
      */
     public static ListNode detectCycle(ListNode head) {
+        //因为只使用了指针，可以认为空间复杂度为O(1)
         ListNode slow = head;
         ListNode fast = head;
         while (fast != null && fast.next != null) {

@@ -24,7 +24,7 @@ import java.util.Map;
  *
  * 示例:
  *
- * LRUCache cache = new LRUCache( 2 / 缓存容量 / );
+ * LRUCache cache = new LRUCache( 2 );  //缓存容量
  *
     *cache.put(1,1);
     *cache.put(2,2);
