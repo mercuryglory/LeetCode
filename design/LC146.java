@@ -88,6 +88,7 @@ class LRUCache {
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
+        //设置head和tail两个哑节点，意义在于添加和删除节点时不用检查相邻节点是否存在
         head = new LinkedNode();
         tail = new LinkedNode();
         head.next = tail;
