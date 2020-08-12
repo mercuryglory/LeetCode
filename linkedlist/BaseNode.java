@@ -45,4 +45,17 @@ public class BaseNode {
 
 
     }
+
+    protected static ListNode generateListNode(int[] arr) {
+        ListNode pre = new ListNode(-1);
+        ListNode head = pre;
+        for (int i = 0; i < arr.length; i++) {
+            head.next = new ListNode(arr[i]);
+            head = head.next;
+        }
+
+        return pre.next;
+
+
+    }
 }
