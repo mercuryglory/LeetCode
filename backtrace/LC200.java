@@ -38,6 +38,12 @@ package backtrace;
  */
 public class LC200 {
 
+    /**
+     * 问题被转化为：找到可以连成一片的1的数量
+     * 用dfs求解，注意走过的网格要被标记
+     *
+     * 网格类问题的dfs遍历方法：https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/
+     */
     public static int numIslands(char[][] grid) {
         if (grid == null || grid.length == 0) {
             return 0;
