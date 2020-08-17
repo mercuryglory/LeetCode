@@ -26,7 +26,7 @@ public class LC02 extends BaseNode {
      *
      * 1、如果两个链表的长度不一样，那么短链表上为空的点补0
      * 2、每一位计算时都要考虑上一位的进位问题，进位以carry表示，则carry=0或1，因为两位相加最大=9+9+1=19
-     * 3、两个链表全部遍历完毕后，进位位1，则在新链表末尾添加节点1
+     * 3、两个链表全部遍历完毕后，进位为1，则在新链表末尾添加节点1
      *
      */
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -42,7 +42,7 @@ public class LC02 extends BaseNode {
             cur.next = new ListNode(sum % 10);
 
             cur = cur.next;
-            if(l1!=null){
+            if (l1 != null) {
                 l1 = l1.next;
             }
             if (l2 != null) {
