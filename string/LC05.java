@@ -98,6 +98,7 @@ public class LC05 {
         }
 
         int begin = 0;
+        //定义最长回文子串的长度
         int maxLen = 1;
         for (int i = 0; i < len; i++) {
             int len1 = expandAroundCenter(s, i, i);
