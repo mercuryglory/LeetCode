@@ -48,6 +48,7 @@ public class LC34 {
      * 测试用例 [1],0   [1],2   [2,2],3
      *
      * 这里将等于的情况合并了，所以不是严格的mid+1和mid-1
+     * 为了清楚，也可以分三个分支判断
      */
     private static int getLower(int[] nums, int target) {
         int start = 0;
