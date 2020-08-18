@@ -50,14 +50,12 @@ public class LC46 {
     }
 
     private static void backTrack(List<List<Integer>> res, List<Integer> list, int len, int start) {
-        if (start > len - 1) {
-            return;
-        }
+
         if (start == len - 1) {
             //回溯的问题，一定要记得需要对引用进行拷贝，否则引用回溯后最后得到的都是空
             res.add(new ArrayList<>(list));
         } else {
-            for (int i = start; i <= len - 1; i++) {
+            for (int i = start; i < len; i++) {
                 Collections.swap(list, i, start);
                 backTrack(res, list, len, start + 1);
                 Collections.swap(list, i, start);
