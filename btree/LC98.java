@@ -53,11 +53,10 @@ public class LC98 extends BaseTreeNode {
             return false;
         }
 
-        int val = root.val;
-        if (val <= pre) {
+        if (root.val <= pre) {
             return false;
         }
-        pre = val;
+        pre = root.val;
 
         return isValidBST(root.right);
 
