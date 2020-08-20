@@ -31,10 +31,16 @@ public class LC215 {
      */
     public static int findKthLargest(int[] nums, int k) {
         int heapSize = nums.length;
-        for (int i = heapSize / 2; i >= 0; i--) {
+        /**
+         * 构建大顶堆，从最后一个非叶子节点len/2-1开始，如果该节点小于其左/右子树的值就交换。然后继续下一个非叶子节点，即i--
+         * 从底向上构建大顶堆是因为，如果自顶向下的话当第i层和i+1层比较后交换，交换后无法保证i层小于i-1层，又要向上验证
+         *
+         */
+        for (int i = heapSize / 2 - 1; i >= 0; i--) {
             adjustMaxHeap(nums, i, heapSize);
         }
 
+        //这里可以从顶向下调整是因为，只有堆顶不满足最大堆性质，其它分支都是满足的
         for (int i = nums.length - 1; i >= nums.length - k + 1; i--) {
             swap(nums, 0, i);
             heapSize--;
