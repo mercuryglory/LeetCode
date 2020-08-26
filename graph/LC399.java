@@ -82,7 +82,7 @@ public class LC399 {
         if (visited.contains(multiplied)) {
             return 0;
         }
-        //如果被除数等于除数，返回1.0
+        //如果被除数等于除数，返回
         if (multiplied.equals(multiplier)) {
             return curResult;
         }
