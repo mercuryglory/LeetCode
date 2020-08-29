@@ -44,6 +44,14 @@ import java.util.Map;
 
 public class LC438 {
 
+    /**
+     * 滑动窗口，保证窗口中的字母出现次数与目标串中的字母出现次数一致
+     * 可以理解为窗口从左边开始，一直以目标串的大小向右滑动，直到到达右端点
+     *
+     * 两次对窗口内数据的更新是对称的
+     *
+     * 模板: https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/solution/hua-dong-chuang-kou-tong-yong-si-xiang-jie-jue-zi-/
+     */
     public static List<Integer> findAnagrams(String s, String p) {
         Map<Character, Integer> need = new HashMap<>();
         Map<Character, Integer> window = new HashMap<>();
@@ -78,6 +86,7 @@ public class LC438 {
                     if (window.get(d).equals(need.get(d))) {
                         valid--;
                     }
+                    //要收缩窗口了，window当前字母出现的次数-1，因为下一次左端点就从该字母的下一个开始判断了
                     window.put(d, window.getOrDefault(d, 0) - 1);
                 }
 
