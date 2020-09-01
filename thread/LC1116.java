@@ -119,6 +119,7 @@ class ZeroEvenOdd {
 
     }
 
+    //odd或even打印完，都要释放打印0的信号量，使0继续打印
     public void even(IntConsumer printNumber) throws InterruptedException {
         for (int i = 2; i <= n; i += 2) {
             even.acquire();
