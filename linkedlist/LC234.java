@@ -34,7 +34,7 @@ public class LC234 extends BaseNode {
         List<Integer> list = new ArrayList<>();
 
         while (head != null) {
-            list.add(head.value);
+            list.add(head.val);
             head = head.next;
         }
 
@@ -75,7 +75,7 @@ public class LC234 extends BaseNode {
         ListNode p2 = secondHalf;
         boolean result = true;
         while (result && p2 != null) {
-            if (p1.value != p2.value) {
+            if (p1.val != p2.val) {
                 result = false;
             }
             p1 = p1.next;

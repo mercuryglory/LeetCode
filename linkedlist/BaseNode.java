@@ -7,7 +7,7 @@ public class BaseNode {
             return;
         }
         while (listNode != null) {
-            System.out.print(listNode.value + (listNode.next == null ? "" : " -> "));
+            System.out.print(listNode.val + (listNode.next == null ? "" : " -> "));
             listNode = listNode.next;
         }
         System.out.println();

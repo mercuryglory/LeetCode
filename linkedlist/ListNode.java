@@ -5,11 +5,16 @@ package linkedlist;
  */
 public class ListNode {
 
-    int value;
+    int val;
     ListNode next;
 
-    public ListNode(int value) {
-        this.value = value;
+    public ListNode(int val) {
+        this.val = val;
+    }
+
+    public ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
     }
 
 

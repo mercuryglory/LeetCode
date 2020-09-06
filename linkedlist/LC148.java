@@ -74,7 +74,7 @@ public class LC148 extends BaseNode {
                 int len2 = step - count;
                 //h1,h2都走完，开始合并
                 while (len1 > 0 && len2 > 0) {
-                    if (h1.value <= h2.value) {
+                    if (h1.val <= h2.val) {
                         pre.next = h1;
                         h1 = h1.next;
                         len1--;
