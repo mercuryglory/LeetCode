@@ -88,6 +88,7 @@ public class LC10 {
             for (int j = 1; j <= n; j++) {
                 if (p.charAt(j - 1) != '*') {
                     if (match(s, p, i, j)) {
+                        //到这里时一定能保证i>=1
                         dp[i][j] = dp[i - 1][j - 1];
                     }
                 } else {
