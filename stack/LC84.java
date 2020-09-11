@@ -28,7 +28,7 @@ public class LC84 {
      */
     public static int largestRectangleArea(int[] heights) {
         //在柱体数组的头和尾加了两个高度为0的柱体，很妙，可以简化逻辑。因为开始的时候栈为空，而遍历到最后如果栈不为空需要
-        //弹出栈中所有元素
+        //弹出栈中所有元素。或者理解为，头的左边没有值，怎么找左边界？尾的右边没有值，怎么找右边界？
         int[] arr = new int[heights.length + 2];
         for (int i = 1; i < heights.length + 1; i++) {
             arr[i] = heights[i - 1];
