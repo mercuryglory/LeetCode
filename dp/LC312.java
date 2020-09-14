@@ -26,6 +26,18 @@ package dp;
 
 public class LC312 {
 
+    /**
+     * 最清楚的题解：https://leetcode-cn.com/problems/burst-balloons/solution/zhe-ge-cai-pu-zi-ji-zai-jia-ye-neng-zuo-guan-jian-/
+     * 创建新数组arr，相当于在原数组nums的头尾各加了一个元素，值为1，方便计算并且避免数组越界，
+     * 相似的处理方法还有{@link stack.LC84}
+     *
+     * dp[i][j]表示开区间(i,j)内能拿到的最多金币
+     * 开区间的长度至少为3，从3开始一直扩大到n+2
+     * 每一个开区间，左端点从0开始，一直到n+2-len
+     * 在每一个开区间内，选择戳爆气球k是多个，枚举这几个k，从中选择最大的total来更新dp[i][j]
+     * dp[i][j]=max{dp[i][k]+dp[k][j]+arr[i]*arr[k]*arr[j]}，
+     * 这里j=i+len-1 （因为是开区间）
+     */
     public static int maxCoins(int[] nums) {
         int n = nums.length;
         int[] arr = new int[n + 2];
@@ -36,6 +48,7 @@ public class LC312 {
         }
         int[][] dp = new int[n + 2][n + 2];
 
+        //开区间的长度，从3开始
         for (int len = 3; len <= n + 2; len++) {
             for (int i = 0; i <= n + 2 - len; i++) {
                 int res = 0;
