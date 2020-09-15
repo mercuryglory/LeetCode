@@ -45,8 +45,7 @@ public class LC297 extends BaseTreeNode {
 
 
     /**
-     * 设置序号index，将字符串根据，分割为数组，根据index的值来设置树节点的val,如果节点的值为#,
-     * 则返回空的树节点。index的作用
+     * 设置序号index，将字符串根据，分割为数组，根据index的值来设置树节点的val,如果节点的值为null,则返回空的树节点。
      */
     public static int index = -1;
 
