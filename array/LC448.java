@@ -27,8 +27,8 @@ public class LC448 {
 
 
     /**
-     * 桶排序。要做到原地修改，将nums[i]-1索引位置的元素标记为负数，因为有出现两次的数字，避免数组索引越界，
-     * nums[i]要取绝对值。再遍历一次数组中大于0的元素其索引+1即为所求数字
+     * 鸽笼原理。要做到原地修改，将nums[i]-1索引位置的元素标记为负数，当遍历到某个位置时元素可能已经被标记，
+     * 因此nums[i]要取绝对值。再遍历一次数组中大于0的元素其索引+1即为所求数字
      */
     public static List<Integer> findDisappearedNumbers(int[] nums) {
         List<Integer> result = new ArrayList<>();
