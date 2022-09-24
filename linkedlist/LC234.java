@@ -57,6 +57,8 @@ public class LC234 extends BaseNode {
      * 2、反转后半部分链表
      * 3、遍历判断是否为回文，保存判断结果
      * 4、恢复之前反转的部分
+     *
+     * 不能用整条链表翻转和再和原链表遍历比较，原链表在翻转过程中会变化
      */
     public static boolean isPalindrome(ListNode head) {
 
@@ -73,17 +75,16 @@ public class LC234 extends BaseNode {
         ListNode secondHalf = reverse(slow.next);
         ListNode p1 = head;
         ListNode p2 = secondHalf;
-        boolean result = true;
-        while (result && p2 != null) {
+        while (p2 != null) {
             if (p1.val != p2.val) {
-                result = false;
+                return false;
             }
             p1 = p1.next;
             p2 = p2.next;
         }
         slow.next = reverse(secondHalf);
 
-        return result;
+        return true;
 
     }
 
