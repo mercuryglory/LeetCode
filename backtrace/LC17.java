@@ -29,15 +29,15 @@ public class LC17 {
 
     private static List<String> result = new ArrayList<>();
 
-    private static Map<String, String> map = new HashMap<String,String>(){{
-        put("2", "abc");
-        put("3", "def");
-        put("4", "ghi");
-        put("5", "jkl");
-        put("6", "mno");
-        put("7", "pqrs");
-        put("8", "tuv");
-        put("9", "wxyz");
+    private static Map<Character, String> map = new HashMap<Character, String>() {{
+        put('2', "abc");
+        put('3', "def");
+        put('4', "ghi");
+        put('5', "jkl");
+        put('6', "mno");
+        put('7', "pqrs");
+        put('8', "tuv");
+        put('9', "wxyz");
     }};
 
 
@@ -46,25 +46,24 @@ public class LC17 {
             return result;
         }
 
-        backTrace("", digits);
+        backTrace(0, "", digits);
 
         return result;
     }
 
     /**
      * 循环+递归，回溯
-     *
      */
-    public static void backTrace(String combination, String nextDigits) {
-        if (nextDigits.length() == 0) {
+    public static void backTrace(int index, String combination, String digits) {
+        if (index == digits.length()) {
             result.add(combination);
         } else {
-            String digit = nextDigits.substring(0, 1);
-            String letters = map.get(digit);
+            char c = digits.charAt(index);
+            String letters = map.get(c);
             for (int i = 0; i < letters.length(); i++) {
-                String letter = letters.substring(i, i + 1);
+                char letter = letters.charAt(i);
                 //这里就是回溯，利用了String的不可变特性，每次循环递归操作都会生成一个新的字符串，不影响循环和递归每一层的结果
-                backTrace(combination + letter, nextDigits.substring(1));
+                backTrace(index + 1, combination + letter, digits);
             }
         }
     }
