@@ -15,6 +15,7 @@ public class LC11 {
 
     /**
      * 双指针法
+     * 向内移动较短边
      * 考虑两点：
      * 1、相同情况下两边距离越远越好
      * 2、区域受限于较短边
@@ -34,10 +35,7 @@ public class LC11 {
             System.out.println(maxArea);
             if (height[left] < height[right]) {
                 left++;
-            } else if (height[left] > height[right]) {
-                right--;
             } else {
-                left++;
                 right--;
             }
         }
