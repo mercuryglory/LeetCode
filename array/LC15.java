@@ -1,7 +1,5 @@
 package array;
 
-import linkedlist.ListNode;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,8 +32,8 @@ public class LC15 {
     /**
      * 双指针
      *
-     * 先对数组排序，然后每次固定一个数nums[i]，再使用左右指针，左指针指向i+1,右指针指向数组右边界，判断三个数的和是否等于0，
-     * 满足则添加进集合，不满足则判断如果和>0,右指针左移，否则左指针右移
+     * 先对数组排序，然后每次固定一个数nums[i]作为每个结果集的第一个元素，再使用左右指针，左指针指向i+1,
+     * 右指针指向数组右边界，判断三个数的和是否等于0，满足则添加进集合，不满足则判断如果和>0,右指针左移，否则左指针右移
      *
      * 如果nums[i]>0，则三数和必然大于0，结束循环
      * 如果nums[i]==nums[i-1]，该数字重复，跳过
