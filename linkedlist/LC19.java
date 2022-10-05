@@ -20,7 +20,7 @@ public class LC19 extends BaseNode {
 
     /**
      * 快慢指针
-     * 找到要删除的节点的前一个节点，将其next指向next的下一个（相当于倒数第n+1个）
+     * 找到要删除的节点的前一个节点，将其next指向next的下一个（相当于快指针领先n+1个）
      * 但如果是删除头节点则不存在前一个节点，所以用哑节点解决
      */
     public static ListNode removeNthFromEnd(ListNode head, int n) {
@@ -28,17 +28,16 @@ public class LC19 extends BaseNode {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
 
-        ListNode slow = dummy, fast = dummy;
-        for (int i = 1; i <= n + 1; i++) {
+        ListNode slow = dummy;
+        ListNode fast = dummy;
+        for (int i = 0; i <= n; i++) {
             fast = fast.next;
         }
         while (fast != null) {
             fast = fast.next;
             slow = slow.next;
         }
-        if (slow.next != null) {
-            slow.next = slow.next.next;
-        }
+        slow.next = slow.next.next;
 
         return dummy.next;
     }
