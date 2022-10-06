@@ -1,8 +1,5 @@
 package array;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 /**
  * created by mercury on 2020-08-01
  *
@@ -29,7 +26,7 @@ import java.util.Collections;
 public class LC33 {
 
     /**
-     * 二分将数组分为两部分
+     * 二分将数组分为两部分，其中一定是一个有序的，另一个可能有序也可能部分有序
      *
      * 如果[left,mid-1]是有序数组，即arr[left]<=arr[mid]，并且满足arr[left]<=target<arr[mid]，则应该将
      * 搜索范围缩小至[left,mid-1],否则在[mid+1,right]中寻找
