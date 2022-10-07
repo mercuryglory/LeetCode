@@ -74,12 +74,14 @@ public class LC39 {
             list.remove(list.size() - 1);
         }
 
+        //这里函数体已经执行结束了，有一个隐形的return，即返回结果给上一层。剪枝的话，需要先让candidates升序
+
 
     }
 
     public static void main(String[] args) {
-        int[] arr = {2, 3, 5};
-        System.out.println(combinationSum(arr, 8));
+        int[] arr = {2, 3, 6, 7};
+        System.out.println(combinationSum(arr, 7));
     }
 
 
