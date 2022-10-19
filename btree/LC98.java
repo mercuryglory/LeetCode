@@ -37,29 +37,25 @@ import java.util.Stack;
 
 public class LC98 extends BaseTreeNode {
 
-    private static long pre = Long.MIN_VALUE;
 
     /**
-     * 一种很简洁的递归做法
-     *
-     * 利用了二叉搜索树的中序遍历，结果一定是升序的特点，用pre保存每一次中序遍历的节点的值，若下一次的值小于等于pre则
-     * 说明不是二叉搜索树
+     * 设计一个递归函数 helper(root, lower, upper),表示考虑以 root 为根的子树，
+     * 判断子树中所有节点的值是否都在 (l,r) 的范围内。在递归调用左子树时，需要把上界 upper 改为 root.val，
+     * 即调用 helper(root.left, lower, root.val)。同理递归调用右子树时，把下界 lower 改为 root.val，
+     * 即调用 helper(root.right, root.val, upper)。初始值为无穷小和无穷大
      */
     public static boolean isValidBST(TreeNode root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    private static boolean isValidBST(TreeNode root, long lower, long upper) {
         if (root == null) {
             return true;
         }
-        if (!isValidBST(root.left)) {
+        if (root.val <= lower || root.val >= upper) {
             return false;
         }
-
-        if (root.val <= pre) {
-            return false;
-        }
-        pre = root.val;
-
-        return isValidBST(root.right);
-
+        return isValidBST(root.left, lower, root.val) && isValidBST(root.right, root.val, upper);
     }
 
 
@@ -92,7 +88,7 @@ public class LC98 extends BaseTreeNode {
     public static void main(String[] args) {
         Integer[] arr = {10, 5, 15, null,null, 12, 20};
         TreeNode root = generateTreeNode(arr);
-        System.out.println(isValidBST2(root));
+        System.out.println(isValidBST(root));
         System.out.println(123);
     }
 }
