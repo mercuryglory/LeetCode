@@ -1,6 +1,7 @@
 package btree;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -28,30 +29,36 @@ import java.util.Stack;
  */
 public class LC105 {
 
-    /**
-     * 递归法，分治
-     */
+
     public static TreeNode buildTree(int[] preorder, int[] inorder) {
-        if (preorder.length == 0) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int n = inorder.length;
+        for (int i = 0; i < n; i++) {
+            map.put(inorder[i], i);
+        }
+
+        return buildTree(preorder, inorder, 0, n - 1, 0, n - 1, map);
+
+    }
+
+    /**
+     * 递归法，分治，用Map存储中序遍历中每个值出现的位置，不必每次递归都遍历
+     */
+    public static TreeNode buildTree(int[] preorder, int[] inorder, int preLeft, int preRight,
+                                     int inLeft, int inRight, Map<Integer, Integer> map) {
+        if (preLeft > preRight) {
             return null;
         }
-
-
-        int rootVal = preorder[0];
-        if (preorder.length == 1) {
-            return new TreeNode(rootVal);
-        }
-
-        TreeNode root = new TreeNode(rootVal);
-        int rootIndex = 0;
-        for (int i = 0; i < inorder.length; i++) {
-            if (inorder[i] == rootVal) {
-                rootIndex = i;
-                break;
-            }
-        }
-        root.left = buildTree(Arrays.copyOfRange(preorder, 1, rootIndex + 1), Arrays.copyOfRange(inorder, 0, rootIndex));
-        root.right = buildTree(Arrays.copyOfRange(preorder, rootIndex + 1, preorder.length), Arrays.copyOfRange(inorder, rootIndex + 1, inorder.length));
+        int preRoot = preLeft;
+        //确定中序遍历根节点的位置
+        int inRoot = map.get(preorder[preRoot]);
+        //左子树的节点数
+        int leftSubSize = inRoot - inLeft;
+        TreeNode root = new TreeNode(preorder[preRoot]);
+        //前序遍历从左边界+1开始的leftSubSize个元素，对应了中序遍历从左边界到根节点位置-1的元素
+        root.left = buildTree(preorder, inorder, preLeft + 1, preLeft + leftSubSize, inLeft, inRoot - 1, map);
+        //前序遍历从左边界+左子树节点数+1到右边界的元素，对应了中序遍历从根节点位置+1到右边界的元素
+        root.right = buildTree(preorder, inorder, preLeft + leftSubSize + 1, preRight, inRoot + 1, inRight, map);
 
         return root;
 
@@ -98,7 +105,7 @@ public class LC105 {
     public static void main(String[] args) {
         int[] pre = {3, 9, 20, 15, 7};
         int[] in = {9, 3, 15, 20, 7};
-        TreeNode node = getTree(pre, in);
+        TreeNode node = buildTree(pre, in);
         System.out.println(123);
 
     }
