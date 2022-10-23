@@ -43,20 +43,20 @@ public class LC114 extends BaseTreeNode {
      *    当前节点处理完毕后，继续移动到其右子节点
      */
     public static void flatten(TreeNode root) {
-        //java引用传递，这里一直向后移动的是拷贝后的root，只是改变了入参root的顺序，入参root最后不会为null
         //对于节点的修改，注意和LC98、LC94的区别
-        while (root != null) {
-            if (root.left == null) {
-                root = root.right;
+        TreeNode cur = root;
+        while (cur != null) {
+            if (cur.left == null) {
+                cur = cur.right;
             } else {
-                TreeNode pre = root.left;
+                TreeNode pre = cur.left;
                 while (pre.right != null) {
                     pre = pre.right;
                 }
-                pre.right = root.right;
-                root.right = root.left;
-                root.left = null;
-                root = root.right;
+                pre.right = cur.right;
+                cur.right = cur.left;
+                cur.left = null;
+                cur = cur.right;
             }
         }
 
